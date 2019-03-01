@@ -15,6 +15,8 @@ myString::myString(const char* charptr) {
 }
 
 myString::myString(const myString& charptr) {
+
+	cout << "copy constructor called" << endl;
 	if (charptr.str != nullptr) {
 		str = new char[strlen(charptr.str) + 1];
 		strcpy_s(str, strlen(charptr.str) + 1, charptr.str);
@@ -26,6 +28,7 @@ myString::myString(const myString& charptr) {
 
 myString::~myString() {
 	delete[] str;
+	cout << "destructor called" << endl;
 }
 
 myString myString::operator= (const myString &ref) {
@@ -41,10 +44,11 @@ myString myString::operator= (const myString &ref) {
 myString myString::operator + (const myString &ref) {
 	myString a;
 
-	a.str = new char[strlen(ref.str) + strlen(this->str) + 1];
-	strcpy_s(a.str, strlen(ref.str) + strlen(this->str) + 1, this->str);
+	int SIZE = strlen(ref.str) + strlen(this->str) + 1;
 
-	strcat_s(a.str, strlen(ref.str) + strlen(this->str) + 1, ref.str);
+	a.str = new char[SIZE];
+	strcpy_s(a.str, SIZE, this->str);
+	strcat_s(a.str, SIZE, ref.str);
 
 	return a;
 }
@@ -52,7 +56,7 @@ myString myString::operator + (const myString &ref) {
 bool myString::operator == (const myString &ref) {
 	bool status = true;
 	if (strlen(this->str) == strlen(ref.str)) {
-		if (strcmp(this->str, ref.str) == 1) {
+		if (strcmp(this->str, ref.str) != 0) {
 			status = false;
 		}
 	}
@@ -68,8 +72,6 @@ const char* myString::c_str() {
 
 ostream &operator<<(ostream &strm, myString &ref) {
 	const char* a = ref.c_str();
-
 	strm << a;
-
 	return strm;
 }
