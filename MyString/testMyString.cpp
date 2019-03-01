@@ -1,4 +1,11 @@
 // test driver code goes here
+//============================
+//Name : Logan Dick
+//Date : 3/01/2019
+//Programing assignment 5
+//Description : myString
+//Bugs : dealing with nullptr.
+//============================
 #include "MyString.h"
 
 using namespace std;
@@ -40,6 +47,13 @@ int main(){
 	s1 = s2 + s3;
 	cout << s1 << " = " << s2 << s3 << endl;
 
+	myString s4 = "hello";
+	myString s5 = "hey";
+	myString s6 = "hi";
+
+	cout << " assigning  s4 to s5 and s6" << endl;
+	s5 = s6 = s4;
+	cout << s4 << s5 << s6 << endl;
 
 
 	return 0;

@@ -1,4 +1,5 @@
 // MyString implementation file
+
 #include "MyString.h"
 #include <cstring>
 
